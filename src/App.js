@@ -1,66 +1,65 @@
 import React, { Component } from "react";
 import "./App.css";
-
+import { connect } from "react-redux";
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { message: this.props.message };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = { message: this.props.message };
+  // }
 
   resetComm() {
-    this.setState({ message: "" });
+    this.props.onResetComm();
   }
 
   updateComm(message) {
-    this.setState({
-      message
-    });
+    this.props.onUpdateComm(message);
   }
 
   render() {
-    const { message } = this.state;
     let messageView;
-    if (message !== "") {
+    if (this.props.message !== "") {
       messageView = (
-        <div>
-          <div class="form-group">
+        <div className="message-body">
+          <div className="form-group">
             <p>
-              <b>Scotty : </b>
-              {message}
+              <b className="text-info">Scotty : </b>
+              {this.props.message}
             </p>
           </div>
 
           <button
             type="submit"
-            class="btn btn-warning btn-lg float-right"
+            className="btn btn-warning btn-lg float-right shadow border-info fixed"
             onClick={() => this.resetComm()}
           >
-            Clear <i class="fa fa-trash" aria-hidden="true" />
+            Clear <i className="fa fa-trash" aria-hidden="true" />
           </button>
         </div>
       );
     }
     return (
       <div>
-        <div class="container py-5">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-6 mx-auto">
-                  <div class="card rounded-0">
-                    <div class="card-header">
-                      <h3 class="mb-0">Style me, Redux me, Surprise me. ;)</h3>
+        <div className="container py-5">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="row ">
+                <div className="col-md-6 mx-auto">
+                  <div className="card rounded-0 shadow-lg border-info">
+                    <div className="card-header">
+                      <h3 className="mb-0">
+                        Style me, Redux me, Surprise me. ;)
+                      </h3>
                     </div>
-                    <div class="card-body">
-                      <div class="form-group">
+                    <div className="card-body">
+                      <div className="form-group">
                         <input
                           type="text"
-                          class="form-control form-control-lg rounded-0"
+                          className="form-control form-control-lg rounded-0 border-info"
                           placeholder="Say something... "
                           onChange={event =>
                             this.updateComm(event.target.value)
                           }
-                          value={message}
+                          value={this.props.message}
                         />
                       </div>
                       {messageView}
@@ -76,4 +75,19 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    message: state.message
+  };
+};
+
+const mapDispachToProps = dispatch => {
+  return {
+    onResetComm: () => dispatch({ type: "RESET_COMM", value: "" }),
+    onUpdateComm: message => dispatch({ type: "UPDATE_COMM", value: message })
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispachToProps
+)(App);
