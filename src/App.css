@@ -3,3 +3,7 @@ html {
   font-size: 15px;
   color: #141823;
 }
+.message-body {
+  overflow-y: scroll;
+  max-height: 250px;
+}

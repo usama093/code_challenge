@@ -5,12 +5,14 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   const newState = { ...state };
   switch (action.type) {
-    case "RESET_COMM":
+    case "RESET_MESSAGE":
       newState.message = action.value;
       break;
 
-    case "UPDATE_COMM":
+    case "UPDATE_MESSAGE":
       newState.message = action.value;
+      break;
+    default:
       break;
   }
   return newState;
