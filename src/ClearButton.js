@@ -1,19 +1,20 @@
 import React from "react";
-
+import { Button, CardFooter } from "reactstrap";
 const ClearButton = props => {
   let buttonView;
 
   if (props.message !== "") {
     buttonView = (
-      <div className="card-footer">
-        <button
-          type="submit"
-          className="btn btn-warning btn-md float-right shadow border-info "
+      <CardFooter>
+        <Button
+          size="md"
+          color="warning"
+          className="float-right shadow border-info "
           onClick={() => props.onResetMessage()}
         >
           Clear <i className="fa fa-trash" aria-hidden="true" />
-        </button>
-      </div>
+        </Button>
+      </CardFooter>
     );
   }
   return <>{buttonView}</>;

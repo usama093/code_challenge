@@ -3,6 +3,16 @@ import "./App.css";
 import { connect } from "react-redux";
 import ClearButton from "./ClearButton";
 import MessageBody from "./MessageBody";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  FormGroup,
+  Input,
+  Container,
+  Row,
+  Col
+} from "reactstrap";
 
 class App extends Component {
   constructor(props) {
@@ -29,46 +39,46 @@ class App extends Component {
     let mainView;
     mainView = (
       <div>
-        <div className="container py-5">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="row ">
-                <div className="col-md-6 mx-auto">
-                  <div className="card rounded-0 shadow-lg border-info">
-                    <div className="card-header">
+        <Container className="py-5">
+          <Row>
+            <Col md="12">
+              <Row>
+                <Col md="6" className="mx-auto">
+                  <Card className="rounded-0 shadow-lg border-info">
+                    <CardHeader>
                       <h3 className="mb-0">
                         Style me, Redux me, Surprise me. ;)
                       </h3>
-                    </div>
-                    <div className="card-body">
-                      <div className="form-group">
-                        <input
+                    </CardHeader>
+                    <CardBody>
+                      <FormGroup>
+                        <Input
                           type="text"
                           className="form-control form-control-lg rounded-0 border-info"
                           placeholder="Say something... "
                           autoFocus={true}
-                          ref={this.inputRef}
+                          innerRef={this.inputRef}
                           onChange={event =>
                             this.handleUpdateMessage(event.target.value)
                           }
                           value={this.props.message}
                         />
-                      </div>
+                      </FormGroup>
                       <MessageBody
                         message={this.props.message}
                         onUpdateMessage={() => this.handleUpdateMessage()}
                       />
-                    </div>
+                    </CardBody>
                     <ClearButton
                       message={this.props.message}
                       onResetMessage={() => this.handleResetMessage()}
                     />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                  </Card>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
     return <>{mainView}</>;
