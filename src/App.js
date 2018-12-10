@@ -17,7 +17,7 @@ import {
 class App extends Component {
   constructor(props) {
     super(props);
-
+    this.handleUpdateMessage = this.handleUpdateMessage.bind(this);
     this.inputRef = React.createRef();
   }
 
@@ -26,8 +26,8 @@ class App extends Component {
     this.inputRef.current.focus();
   }
 
-  handleUpdateMessage(message) {
-    this.props.onUpdateMessage(message);
+  handleUpdateMessage(e) {
+    this.props.onUpdateMessage(e.target.value);
   }
   // componentDidMount() {
   //   this.inputRef.current.focus();
@@ -58,9 +58,7 @@ class App extends Component {
                           placeholder="Say something... "
                           autoFocus={true}
                           innerRef={this.inputRef}
-                          onChange={event =>
-                            this.handleUpdateMessage(event.target.value)
-                          }
+                          onChange={this.handleUpdateMessage}
                           value={this.props.message}
                         />
                       </FormGroup>
