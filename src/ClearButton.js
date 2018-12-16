@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Button, CardFooter } from "reactstrap";
 const ClearButton = props => {
   let buttonView;
@@ -18,6 +19,10 @@ const ClearButton = props => {
     );
   }
   return <>{buttonView}</>;
+};
+
+ClearButton.propTypes = {
+  message: PropTypes.string
 };
 
 export default ClearButton;

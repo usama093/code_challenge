@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { FormGroup } from "reactstrap";
 
 const MessageBody = props => {
@@ -17,6 +18,10 @@ const MessageBody = props => {
     );
   }
   return <>{messageView}</>;
+};
+
+MessageBody.propTypes = {
+  message: PropTypes.string
 };
 
 export default MessageBody;

@@ -18,6 +18,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleUpdateMessage = this.handleUpdateMessage.bind(this);
+    this.handleResetMessage = this.handleResetMessage.bind(this);
+
     this.inputRef = React.createRef();
   }
 
@@ -64,12 +66,12 @@ class App extends Component {
                       </FormGroup>
                       <MessageBody
                         message={this.props.message}
-                        onUpdateMessage={() => this.handleUpdateMessage()}
+                        onUpdateMessage={this.handleUpdateMessage}
                       />
                     </CardBody>
                     <ClearButton
                       message={this.props.message}
-                      onResetMessage={() => this.handleResetMessage()}
+                      onResetMessage={this.handleResetMessage}
                     />
                   </Card>
                 </Col>
